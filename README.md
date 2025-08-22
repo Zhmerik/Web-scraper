@@ -2,7 +2,7 @@
 This project is a user-friendly web scraper with a graphical user interface, built with Python. It allows you to quickly and efficiently extract data from websites and save it as a PDF file. The application is perfect for beginners and anyone looking to automate information gathering without writing complex code.
 
 <p align="center">
-  <img width="609" height="689" src="https://github.com/user-attachments/assets/0e5640f7-cd9d-48bb-ab59-f6b0256a026e" width="300" align="left" />
+  <img width="609" height="689" alt="image" src="https://github.com/user-attachments/assets/894baccd-649d-430e-aaac-8de64814636c" align="left"/>
   <h3 align="center">Usage:</h3>
   <p><b>It's very simple. </b> </p>
   <p> 1. Run the program by entering python gui.py in terminal.</p>
