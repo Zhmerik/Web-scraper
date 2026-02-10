@@ -8,8 +8,16 @@ from tkinter import messagebox
 import time
 import json
 import os
+import sys
+import gui
 
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
 
+    return os.path.join(base_path, relative_path)
 
 def program(url, selector_type,  selector_item, path):
 
@@ -31,19 +39,6 @@ def program(url, selector_type,  selector_item, path):
         driver.execute_script("window.scrollBy(0, 1000);")
         time.sleep(1)
 
-        # Later add the advanced ability to click on buttons
-        #try:
-        #    buttons = driver.find_elements(By.XPATH, "//ol[@class='more-btn']/a[@href='#']")
-        #    time.sleep(0.05)
-        #    if not buttons:
-        #        break
-        #    for btn in buttons:
-        #        driver.execute_script("arguments[0].click();", btn)
-        #        time.sleep(0.05)
-        #except Exception as e:
-        #    print(f"Помилка: {e}")
-        #    break
-
         new_pos = driver.execute_script("return window.scrollY")
 
         if new_pos == old_pos:
@@ -51,7 +46,7 @@ def program(url, selector_type,  selector_item, path):
    
     results = driver.find_elements(selector_options[selector_type], selector_item)
 
-    with open('output.json', 'r', encoding='utf-8') as file:
+    with open(resource_path('output.json'), 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     data_to_load = {}
@@ -68,7 +63,7 @@ def program(url, selector_type,  selector_item, path):
         messagebox.showerror("Error", "Parser did not find any entries selector")
 
     else:
-        with open('output.json', 'w', encoding='utf-8') as file:
+        with open(resource_path('output.json'), 'w', encoding='utf-8') as file:
             json.dump(data_to_load, file, indent=4, ensure_ascii=False)
 
         driver.close()
@@ -77,11 +72,11 @@ def program(url, selector_type,  selector_item, path):
 
 def convert(path):
     try:
-        with open('output.json', 'r', encoding='utf-8') as file:
+        with open(resource_path('output.json'), 'r', encoding='utf-8') as file:
             doc = json.load(file)
         pdf = FPDF()
         pdf.add_page()
-        pdf.add_font("DejaVuSans", "", "DejaVuSans.ttf", uni=True) 
+        pdf.add_font("DejaVuSans", "", resource_path("DejaVuSans.ttf"), uni=True) 
         pdf.set_font("DejaVuSans", size = 12)
         for key, val in doc.items():
             pdf.multi_cell(w=0,h=10, txt=f"{val}", align="L")
@@ -101,3 +96,7 @@ def convert(path):
         os.startfile(full_path)
     except IndexError:
         messagebox.showerror("Error", "Failed to convert font to PDF")
+
+if __name__ == "__main__":
+    app = gui.App()
+    app.mainloop()
