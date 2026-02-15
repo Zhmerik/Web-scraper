@@ -5,7 +5,7 @@ This project is a user-friendly web scraper with a graphical user interface, bui
   <img width="609" height="689" alt="image" src="https://github.com/user-attachments/assets/894baccd-649d-430e-aaac-8de64814636c" align="left"/>
   <h3 align="center">Usage:</h3>
   <p><b>It's very simple. </b> </p>
-  <p> 1. Run the program by entering python gui.py in terminal.</p>
+  <p> 1. Run the program by running main.exe</p>
   <p> 2. Enter the URL. </p>
   <p> 3. Enter the selector type. </p>
   <p> 4. Enter the selector name (if it is a CSS selector, you need to separate the commas, for example, a.tpl-lbl.css-5mgoji). <p>
